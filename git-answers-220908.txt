@@ -1,52 +1,51 @@
-(1) Что делает команда git revert и пример ее использования.
-Эта команда создает новый коммит, который отменяет изменения, 
-сделанные в другом коммите. Это называется операция "восстановления".
+(1) What the git revert command does and an example of its use.
+This command creates a new commit that undoes the changes made in another commit. 
+This is called a "recovery" operation.
 $ git revert HASH-CODE
-или 
+or 
 $ git revert -m 1
-Опция -m 1 указывает какой родитель является «основной веткой» и должен быть сохранен.
+The -m 1 option specifies which parent is the "main branch" and should be saved.
 
-(2) Какой командой можно изменить последний коммит?
-Изменить комментарий к последнему коммиту можно командой:
+(2) What command can I use to change the last commit?
+You can change the comment to the last commit with the command:
 $ git commit --amend -m "new comment"
-или
+or
 $ git commit --amend
-Эта команда запустит редактор комментария коммита
+This command will launch the commit comment editor
 
-(3) Что делает команда git remote rm origin?
-Удаляет подключение к удаленному репозиторию.
+(3) What does the git remote rm origin command do?
+Deletes the connection to the remote repository.
 
-(4) В каких случаях происходит MERGE CONFLICT?
-Если была по-разному изменена одна и та же часть одного и того же файла 
-в двух объединяемых ветках.
-Конфликт может быть вызван из-за разных пробельных символов (текст может быть 
-идентичным, но в одном из вариантов могут присутствовать или отсутствовать 
-дополнительные пробелы).
-Если присутствует много конфликтов из-за пробелов, 
-то можно включить опции -Xignore-all-space или -Xignore-space-change.
-Первая опция игнорирует изменения в любом количестве существующих 
-пробельных символов, вторая игнорирует вообще все изменения пробельных символов.
+(4) In what cases does MERGE CONFLICT occur?
+If the same part of the same file was changed differently
+in two merged branches.
+A conflict may be caused due to different whitespace characters (the text may be
+identical, but additional spaces may or may not be present in one of the variants).
+If there are a lot of conflicts due to spaces,
+then you can enable the -Ignore-all-space or -Ignore-space-change options.
+The first option ignores changes in any number of existing
+whitespace characters, the second ignores all changes in whitespace characters at all.
 
-(5) Как посмотреть отличия между ветками?
-С помощью команд:
+(5) How can I see the differences between branches?
+Using the commands:
 $ git diff branch1 branch2
 $ git diff branch1..branch2
-Или можно сравнить текущую с другой
+Or you can compare the current one with another
 $ git diff otherBranch  
 
-(6) Какой командой удалить локальную и удаленную ветки?
-1. Локальную ветку можно удалить с помощью команды:
+(6) What is the command to delete the local and remote branches?
+1. The local branch can be deleted using the command:
 $ git branch -d branchName
 $ git branch -D branchName
-Опция -D обозначает --delete --force, которая удаляет ветку 
-вне зависимости от ее статуса push или merge.
-2. Удаленную (remote) ветку можно удалить с помощью команды:
+The -D option stands for --delete --force, which deletes 
+a branch regardless of its push or merge status.
+2. A remote branch can be deleted using the command:
 $ git push origin --delete branchName
-или
+or
 $ git push origin :branchName
 
-(7) Как сделать файл неотслеживаемым (untracked)?
-1.Можно добавить в файл .gitignore шаблон c его полным именем:
-Например: filename.ext
-2. Или, в случае необходимости, удалять этот файл из индекса посредством команды:
+(7) How to make a file untraceable (untracked)?
+1.You can add it to the file.gitignore template with its full name:
+For example: filename.ext
+2. Or, if necessary, delete this file from the index using the command:
 $ git rm --cached filename.ext
